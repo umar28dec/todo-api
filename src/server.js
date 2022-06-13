@@ -12,6 +12,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+const todoRoutes = require("./routes/todo.route");
+app.use("/api", todoRoutes);
+
+
 app.get('/',function(req,res){
     res.status(200).send(`Welcome to todo apis`);
 });
