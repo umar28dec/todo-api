@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 function verifyToken(req, res, next) {
     let responseData = {};
-    var token = req.headers['x-access-token'];
+    let token = req.headers['x-access-token'];
     if (!token){
         responseData['status'] = 'failure';
         responseData['data'] = { auth: false, token: '' };

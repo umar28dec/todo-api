@@ -22,7 +22,7 @@ exports.registerUser = (req, res) => {
             return res.status(500).json(responseData);
         }
         let token = jwt.sign({id: user._id}, process.env.SECRET_JWT, {
-            expiresIn: process.env.TOKEN_EXPIRE_TIME
+            expiresIn: 10 * 60
         });
         responseData['status'] = 'success';
         responseData['data'] = {auth: true, token: token};
@@ -52,10 +52,15 @@ exports.login = (req, res) => {
         }
 
         let passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-        if (!passwordIsValid) return res.status(401).send({auth: false, token: null});
+        if (!passwordIsValid) {
+            responseData['status'] = 'failure';
+            responseData['data'] = {};
+            responseData['message'] = 'Invalid email or password.';
+            return res.status(401).json(responseData);
+        }
 
         let token = jwt.sign({id: user._id}, process.env.SECRET_JWT, {
-            expiresIn: process.env.TOKEN_EXPIRE_TIME
+            expiresIn: 10 * 60
         });
 
         responseData['status'] = 'success';
