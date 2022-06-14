@@ -51,10 +51,10 @@ exports.getAllTodos = (req, res) => {
         });
 };
 
-exports.getTodo = function(req, res) {
+exports.getTodo = function (req, res) {
     let responseData = {};
 
-    Todo.findById(req.params.todoId, function(err, task) {
+    Todo.findById(req.params.todoId, function (err, task) {
         if (err || !task) {
             responseData['status'] = 'failure';
             responseData['data'] = {};
@@ -74,10 +74,10 @@ exports.updateTodo = (req, res) => {
         title: req.body.title,
     }, {new: true})
         .then(task => {
-            if(!task) {
+            if (!task) {
                 responseData['status'] = 'failure';
                 responseData['data'] = {};
-                responseData['message'] = 'Todo not found.';
+                responseData['message'] = 'Todo not found';
                 return res.status(404).json(responseData);
             }
             responseData['status'] = 'success';
@@ -87,5 +87,22 @@ exports.updateTodo = (req, res) => {
         })
 };
 
+exports.deleteTodo = (req, res) => {
+    let todoId = req.params.todoId;
+    let responseData = {};
 
+    Todo.findByIdAndRemove(todoId)
+        .then(task => {
+            if (!task) {
+                responseData['status'] = 'failure';
+                responseData['data'] = {};
+                responseData['message'] = 'Todo not found';
+                return res.status(404).json(responseData);
+            }
+            responseData['status'] = 'success';
+            responseData['data'] = '';
+            responseData['message'] = 'Todo deleted successfully.';
+            res.json(responseData);
+        })
+};
 
