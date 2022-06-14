@@ -1,6 +1,11 @@
 const Todo = require("../documents/todo.document");
+const {validationResult} = require("express-validator");
 
 exports.addTodo = (req, res) => {
+    let error = sendValidationMessage(req, res);
+    if(error){
+        return false;
+    }
     const todo = new Todo(req.body);
     let responseData = {};
     todo.save((err, task) => {
@@ -53,6 +58,10 @@ exports.getAllTodos = (req, res) => {
 
 exports.getTodo = function (req, res) {
     let responseData = {};
+    let error = sendValidationMessage(req, res);
+    if(error){
+        return false;
+    }
 
     Todo.findById(req.params.todoId, function (err, task) {
         if (err || !task) {
@@ -70,6 +79,10 @@ exports.getTodo = function (req, res) {
 
 exports.updateTodo = (req, res) => {
     let responseData = {};
+    let error = sendValidationMessage(req, res);
+    if(error){
+        return false;
+    }
     Todo.findByIdAndUpdate(req.params.todoId, {
         title: req.body.title,
     }, {new: true})
@@ -88,8 +101,13 @@ exports.updateTodo = (req, res) => {
 };
 
 exports.deleteTodo = (req, res) => {
+    let error = sendValidationMessage(req, res);
+    if(error){
+        return false;
+    }
     let todoId = req.params.todoId;
     let responseData = {};
+
 
     Todo.findByIdAndRemove(todoId)
         .then(task => {
@@ -103,6 +121,28 @@ exports.deleteTodo = (req, res) => {
             responseData['data'] = '';
             responseData['message'] = 'Todo deleted successfully.';
             res.json(responseData);
-        })
+        }).catch(err => {
+        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
+            return res.status(404).send({
+                message: "Note not found with id " + req.params.noteId
+            });
+        }
+        return res.status(500).send({
+            message: "Could not delete note with id " + req.params.noteId
+        });
+    });
 };
+
+sendValidationMessage = (req, res) => {
+    let errors = validationResult(req).mapped()
+    if (!(Object.keys(errors).length === 0)) {
+        let errorData = {
+            status:'failure',
+            errors: errors,
+            message:'Todo validation failed'
+        }
+        return res.status(400).json(errorData);
+    }
+    return false;
+}
 
