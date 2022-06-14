@@ -30,7 +30,7 @@ exports.getAllTodos = (req, res) => {
                 responseData['status'] = 'failure';
                 responseData['data'] = {};
                 responseData['message'] = 'Some error occurred.';
-                return res.status(400).json(responseData);
+                return res.status(500).json(responseData);
             }
 
             Todo.count((err, count) => {
@@ -50,5 +50,42 @@ exports.getAllTodos = (req, res) => {
 
         });
 };
+
+exports.getTodo = function(req, res) {
+    let responseData = {};
+
+    Todo.findById(req.params.todoId, function(err, task) {
+        if (err || !task) {
+            responseData['status'] = 'failure';
+            responseData['data'] = {};
+            responseData['message'] = 'Some error occurred.';
+            return res.status(500).json(responseData);
+        }
+        responseData['status'] = 'success';
+        responseData['data'] = task;
+        responseData['message'] = 'Todo fetched successfully.';
+        res.json(responseData);
+    });
+};
+
+exports.updateTodo = (req, res) => {
+    const todo = req.todo;
+    todo.title = req.body.title;
+    let responseData = {};
+
+    todo.save((err, task) => {
+        if (err || !task) {
+            responseData['status'] = 'failure';
+            responseData['data'] = {};
+            responseData['message'] = 'Some error occurred.';
+            return res.status(500).json(responseData);
+        }
+        responseData['status'] = 'success';
+        responseData['data'] = task;
+        responseData['message'] = 'Todo fetched successfully.';
+        res.json(responseData);
+    });
+};
+
 
 
