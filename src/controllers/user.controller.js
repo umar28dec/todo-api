@@ -10,25 +10,37 @@ exports.registerUser = (req, res) => {
         return false;
     }
     let hashedPassword = bcrypt.hashSync(req.body.password, 8);
+    let email = req.body.email;
+    let responseData ={}
+    User.findOne({ email })
+        .then(data =>{
+            if (data) {
+                responseData['status'] = 'failure';
+                responseData['data'] = {};
+                responseData['message'] = 'User already registered with this email';
+                return res.status(409).json(responseData);
+            }
+            User.create({
+                name: req.body.name, email: req.body.email, password: hashedPassword
+            }, function (err, user) {
+                let responseData = {};
+                if (err) {
+                    responseData['status'] = 'failure';
+                    responseData['data'] = {};
+                    responseData['message'] = 'There was a problem registering the user.';
+                    return res.status(500).json(responseData);
+                }
+                let token = jwt.sign({id: user._id}, process.env.SECRET_JWT, {
+                    expiresIn: 10 * 60
+                });
+                responseData['status'] = 'success';
+                responseData['data'] = {auth: true, token: token};
+                responseData['message'] = 'User registered successfully.';
+                res.json(responseData);
+            });
+        })
 
-    User.create({
-        name: req.body.name, email: req.body.email, password: hashedPassword
-    }, function (err, user) {
-        let responseData = {};
-        if (err) {
-            responseData['status'] = 'failure';
-            responseData['data'] = {};
-            responseData['message'] = 'There was a problem registering the user.';
-            return res.status(500).json(responseData);
-        }
-        let token = jwt.sign({id: user._id}, process.env.SECRET_JWT, {
-            expiresIn: 10 * 60
-        });
-        responseData['status'] = 'success';
-        responseData['data'] = {auth: true, token: token};
-        responseData['message'] = 'User registered successfully.';
-        res.json(responseData);
-    });
+
 }
 
 exports.login = (req, res) => {
