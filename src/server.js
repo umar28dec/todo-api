@@ -1,4 +1,3 @@
-
 const express = require("express");
 const morgan = require('morgan')
 const path = require('path')
@@ -7,7 +6,7 @@ require('dotenv').config();
 
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const db =require('./config/mongo-db-connection');
+const db = require('./config/mongo-db-connection');
 
 const port = process.env.PORT;
 const app = express();
@@ -20,12 +19,15 @@ let accessLogStream = rfs.createStream('access.log', {
     interval: '1d', // rotate daily
     path: path.join(process.env.LOG_PATH || process.env.PWD, 'log')
 })
-app.use(morgan('combined', { stream: accessLogStream }))
+app.use(morgan('combined', {stream: accessLogStream}))
 
 const todoRoutes = require("./routes/todo.route");
-app.use("/api", todoRoutes);
+const userRoutes = require("./routes/user.route");
 
-app.get('/',function(req,res){
+app.use("/api", todoRoutes);
+app.use("/api", userRoutes);
+
+app.get('/', function (req, res) {
     res.status(200).send(`Welcome to todo apis`);
 });
 

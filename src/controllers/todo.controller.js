@@ -3,7 +3,7 @@ const {validationResult} = require("express-validator");
 
 exports.addTodo = (req, res) => {
     let error = sendValidationMessage(req, res);
-    if(error){
+    if (error) {
         return false;
     }
     const todo = new Todo(req.body);
@@ -13,7 +13,7 @@ exports.addTodo = (req, res) => {
             responseData['status'] = 'failure';
             responseData['data'] = {};
             responseData['message'] = 'Some error occurred.';
-            return res.status(400).json(responseData);
+            return res.status(500).json(responseData);
         }
         responseData['status'] = 'success';
         responseData['data'] = task;
@@ -59,7 +59,7 @@ exports.getAllTodos = (req, res) => {
 exports.getTodo = function (req, res) {
     let responseData = {};
     let error = sendValidationMessage(req, res);
-    if(error){
+    if (error) {
         return false;
     }
 
@@ -80,7 +80,7 @@ exports.getTodo = function (req, res) {
 exports.updateTodo = (req, res) => {
     let responseData = {};
     let error = sendValidationMessage(req, res);
-    if(error){
+    if (error) {
         return false;
     }
     Todo.findByIdAndUpdate(req.params.todoId, {
@@ -100,14 +100,14 @@ exports.updateTodo = (req, res) => {
         }).catch(err => {
         responseData['status'] = 'failure';
         responseData['data'] = {};
-        responseData['message'] = 'Todo not found';
+        responseData['message'] = 'Some error occurred.';
         return res.status(500).json(responseData);
     });
 };
 
 exports.deleteTodo = (req, res) => {
     let error = sendValidationMessage(req, res);
-    if(error){
+    if (error) {
         return false;
     }
     let todoId = req.params.todoId;
@@ -129,7 +129,7 @@ exports.deleteTodo = (req, res) => {
         }).catch(err => {
         responseData['status'] = 'failure';
         responseData['data'] = {};
-        responseData['message'] = 'Todo not found';
+        responseData['message'] = 'Some error occurred.';
         return res.status(500).json(responseData);
     });
 };
@@ -138,9 +138,7 @@ sendValidationMessage = (req, res) => {
     let errors = validationResult(req).mapped()
     if (!(Object.keys(errors).length === 0)) {
         let errorData = {
-            status:'failure',
-            errors: errors,
-            message:'Todo validation failed'
+            status: 'failure', errors: errors, message: 'Todo validation failed'
         }
         return res.status(400).json(errorData);
     }
