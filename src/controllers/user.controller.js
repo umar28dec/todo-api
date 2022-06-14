@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const {validationResult} = require("express-validator");
 
-
 exports.registerUser = (req, res) => {
     let error = sendValidationMessage(req, res);
     if (error) {
@@ -39,7 +38,6 @@ exports.registerUser = (req, res) => {
                 res.json(responseData);
             });
         })
-
 
 }
 
