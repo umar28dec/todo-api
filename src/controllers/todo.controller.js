@@ -6,7 +6,9 @@ exports.addTodo = (req, res) => {
     if (error) {
         return false;
     }
-    const todo = new Todo(req.body);
+    let todoData = req.body;
+    todoData.user_id =req.userId
+    const todo = new Todo(todoData);
     let responseData = {};
     todo.save((err, task) => {
         if (err || !task) {
@@ -24,12 +26,13 @@ exports.addTodo = (req, res) => {
 
 exports.getAllTodos = (req, res) => {
     const limit = req.query.limit ? parseInt(req.query.limit) : 10;
-    const page = req.query.page ? parseInt(req.query.page) - 1 : 0;
-
+    const page = req.query.page ? parseInt(req.query.page) : 1;
+    const user_id =req.userId;
     let responseData = {};
     Todo.find()
+        .where({user_id})
         .sort({createdAt: -1})
-        .limit(limit).skip(limit * page)
+        .limit(limit).skip(limit * (page-1))
         .exec((err, data) => {
             if (err || !data) {
                 responseData['status'] = 'failure';
@@ -40,11 +43,10 @@ exports.getAllTodos = (req, res) => {
 
             Todo.count((err, count) => {
                 const totalPages = Math.ceil(count / limit)
-                const currentPage = Math.ceil(count % page)
 
                 let responseWithMeta = {
                     data, meta: {
-                        total_record: count, page: currentPage, pages: totalPages,
+                        total_record: count, page: page, pages: totalPages,
                     },
                 }
                 responseData['status'] = 'success';

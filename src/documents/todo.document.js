@@ -4,6 +4,9 @@ const Todo = new mongoose.Schema({
     title: {
         type: String, required: true, trim: true, maxlength: 50,
     },
-}, {timestamps: true});
+    user_id:{
+        type:String, required: true, trim: true,
+    }
+}, {timestamps: true, versionKey: false });
 
 module.exports = mongoose.model("todo", Todo);
