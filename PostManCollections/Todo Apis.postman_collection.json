@@ -1,0 +1,1467 @@
+{
+	"info": {
+		"_postman_id": "33fee04e-a12a-4072-bd6c-5dd1710809e8",
+		"name": "Todo Apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16792897"
+	},
+	"item": [
+		{
+			"name": "Create todo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Take Tea\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/todo",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Authentication Failure",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTkwZThjNTMwOGM5Zjk4OGFmMDE2YyIsImlhdCI6MTY1NTI0NzMwMywiZXhwIjoxNjU1MjQ3OTAzfQ.FzWyAKKpd...",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Read News Paper\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9004/api/todo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"api",
+								"todo"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "95"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5f-oJs0KbL9ztv6BaihKgE6B5Bz+5M\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 22:22:43 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failure\",\n    \"data\": {\n        \"auth\": false,\n        \"token\": \"\"\n    },\n    \"message\": \"Failed to authenticate token.\"\n}"
+				},
+				{
+					"name": "Validation Failure",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/todo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"todo"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "165"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a5-hJpLaaphsINhZEI43EI3q8BgInM\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 22:25:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failure\",\n    \"errors\": {\n        \"title\": {\n            \"value\": \"\",\n            \"msg\": \"Title must be at least 3 chars long\",\n            \"param\": \"title\",\n            \"location\": \"body\"\n        }\n    },\n    \"message\": \"Todo validation failed\"\n}"
+				},
+				{
+					"name": "Create todo",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Read News Paper\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/todo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"todo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "242"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"f2-hH6FA1BUzQidKnxN8W6fVLX2I1c\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 22:41:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"title\": \"Read News Paper\",\n        \"user_id\": \"62a90e8c5308c9f988af016c\",\n        \"_id\": \"62a90ea35308c9f988af016e\",\n        \"createdAt\": \"2022-06-14T22:41:39.021Z\",\n        \"updatedAt\": \"2022-06-14T22:41:39.021Z\"\n    },\n    \"message\": \"Todo created successfully.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "User Registration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Umar Khan\",\n    \"email\" :\"umar@gmail.com\",\n    \"password\":\"12345678\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/user/registration",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"registration"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Registration",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Umar Khan\",\n    \"email\" :\"umar@gmail.com\",\n    \"password\":\"12345678\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9004/api/user/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"api",
+								"user",
+								"registration"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "265"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"109-drrYsC1Q1iJSdHA8FXRVRGX/CUE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:01:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"auth\": true,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTkxMzYzOTNmOWJlNWRkYzVkYTE3MSIsImlhdCI6MTY1NTI0NzcxNSwiZXhwIjoxNjU1MjQ4MzE1fQ.E71_GzbPD6U4gJ4-EywYjH7L4LGyRCQjbIG8exHnIko\"\n    },\n    \"message\": \"User registered successfully.\"\n}"
+				},
+				{
+					"name": "Already exists validation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Umar Khan\",\n    \"email\" :\"umar@gmail.com\",\n    \"password\":\"12345678\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/registration",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"registration"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "82"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"52-1U1vO2VET5P6u5scUsnORA1zP1U\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:02:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failure\",\n    \"data\": {},\n    \"message\": \"User already registered with this email\"\n}"
+				},
+				{
+					"name": "Name validation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"\",\n    \"email\" :\"umar@gmail.com\",\n    \"password\":\"12345678\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/registration",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"registration"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "163"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a3-oVtGJcNB/pOTJLeSYtTW8abU5TU\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:02:59 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failure\",\n    \"errors\": {\n        \"name\": {\n            \"value\": \"\",\n            \"msg\": \"Title must be at least 3 chars long\",\n            \"param\": \"name\",\n            \"location\": \"body\"\n        }\n    },\n    \"message\": \"Todo validation failed\"\n}"
+				},
+				{
+					"name": "Invalid email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Umar Khan\",\n    \"email\" :\"umar\",\n    \"password\":\"12345678\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/registration",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"registration"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "147"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"93-Uwf/XPMvyfXo8MNfVx8beRf97Eg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:03:30 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failure\",\n    \"errors\": {\n        \"email\": {\n            \"value\": \"umar\",\n            \"msg\": \"Invalid email\",\n            \"param\": \"email\",\n            \"location\": \"body\"\n        }\n    },\n    \"message\": \"Todo validation failed\"\n}"
+				}
+			]
+		},
+		{
+			"name": "User Log-in",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" :\"umar@gmail.com\",\n    \"password\":\"12345678\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/user/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User Log-in",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" :\"umar@gmail.com\",\n    \"password\":\"12345678\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9004/api/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "261"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"105-QhX8lYCcgym7mKJuxjH9ytXMypg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:04:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"auth\": true,\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTkxMzYzOTNmOWJlNWRkYzVkYTE3MSIsImlhdCI6MTY1NTI0Nzg1OSwiZXhwIjoxNjU1MjQ4NDU5fQ.dgcwsJ0OsG0duZrlG9-95KG8Pd0ezo3bFj3IB5B_Z70\"\n    },\n    \"message\": \"User log-in successfully.\"\n}"
+				},
+				{
+					"name": "Invalid email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" :\"umar\",\n    \"password\":\"12345678\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "147"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"93-Uwf/XPMvyfXo8MNfVx8beRf97Eg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:04:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failure\",\n    \"errors\": {\n        \"email\": {\n            \"value\": \"umar\",\n            \"msg\": \"Invalid email\",\n            \"param\": \"email\",\n            \"location\": \"body\"\n        }\n    },\n    \"message\": \"Todo validation failed\"\n}"
+				},
+				{
+					"name": "Password validation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" :\"umar@gmail.com\",\n    \"password\":\"1234567\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "181"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b5-j5K3uAxifxYcLW+EgnVRflaaCj8\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:05:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failure\",\n    \"errors\": {\n        \"password\": {\n            \"value\": \"1234567\",\n            \"msg\": \"Password must be at least 8 chars long\",\n            \"param\": \"password\",\n            \"location\": \"body\"\n        }\n    },\n    \"message\": \"Todo validation failed\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete todo",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"Have a tea\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/todo/62a90f875308c9f988af017c",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todo",
+						"62a90f875308c9f988af017c"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete todo",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTkwZThjNTMwOGM5Zjk4OGFmMDE2YyIsImlhdCI6MTY1NTI0NzMwMywiZXhwIjoxNjU1MjQ3OTAzfQ.FzWyAKKpd...",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Have a tea\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9004/api/todo/62a90f875308c9f988af017c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"api",
+								"todo",
+								"62a90f875308c9f988af017c"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"45-Un8GbkEFbQVr9L72oyzHcKfaJmk\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:01:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": \"\",\n    \"message\": \"Todo deleted successfully.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update todo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"New title\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/todo/62a90f875308c9f988af017c",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todo",
+						"62a90f875308c9f988af017c"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Validation",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTkwZThjNTMwOGM5Zjk4OGFmMDE2YyIsImlhdCI6MTY1NTI0NzMwMywiZXhwIjoxNjU1MjQ3OTAzfQ.FzWyAKKpd...",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:9004/api/todo/62a90f875308c9f988af017c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"api",
+								"todo",
+								"62a90f875308c9f988af017c"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "165"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a5-hJpLaaphsINhZEI43EI3q8BgInM\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:00:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failure\",\n    \"errors\": {\n        \"title\": {\n            \"value\": \"\",\n            \"msg\": \"Title must be at least 3 chars long\",\n            \"param\": \"title\",\n            \"location\": \"body\"\n        }\n    },\n    \"message\": \"Todo validation failed\"\n}"
+				},
+				{
+					"name": "Update todo",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"New title\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/todo/62a90f875308c9f988af017c",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"todo",
+								"62a90f875308c9f988af017c"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "236"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ec-Qih2O4HVFbL7HCuRtpURBTocYq4\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 23:00:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"_id\": \"62a90f875308c9f988af017c\",\n        \"title\": \"New title\",\n        \"user_id\": \"62a90e8c5308c9f988af016c\",\n        \"createdAt\": \"2022-06-14T22:45:27.505Z\",\n        \"updatedAt\": \"2022-06-14T23:00:33.339Z\"\n    },\n    \"message\": \"Todo updated successfully.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all todos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url}}/api/todo?page=1&limit=2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todo"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get all todos with page and limit",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTkwZThjNTMwOGM5Zjk4OGFmMDE2YyIsImlhdCI6MTY1NTI0NzMwMywiZXhwIjoxNjU1MjQ3OTAzfQ.FzWyAKKpd...",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9004/api/todo?page=1&limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"api",
+								"todo"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "460"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"1cc-6ZQCfQyveaOt7njd8fFfdblmvQ4\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 22:57:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"data\": [\n            {\n                \"_id\": \"62a90f875308c9f988af017c\",\n                \"title\": \"Take Tea\",\n                \"user_id\": \"62a90e8c5308c9f988af016c\",\n                \"createdAt\": \"2022-06-14T22:45:27.505Z\",\n                \"updatedAt\": \"2022-06-14T22:45:27.505Z\"\n            },\n            {\n                \"_id\": \"62a90f825308c9f988af017a\",\n                \"title\": \"Make Tea\",\n                \"user_id\": \"62a90e8c5308c9f988af016c\",\n                \"createdAt\": \"2022-06-14T22:45:22.313Z\",\n                \"updatedAt\": \"2022-06-14T22:45:22.313Z\"\n            }\n        ],\n        \"meta\": {\n            \"total_record\": 4,\n            \"page\": 1,\n            \"pages\": 2\n        }\n    },\n    \"message\": \"Todo fetched successfully.\"\n}"
+				},
+				{
+					"name": "Get all todos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/todo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"todo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "809"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"329-Gkmk1MgGdgeboN8m8oT+906kAyc\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 22:58:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"data\": [\n            {\n                \"_id\": \"62a90f875308c9f988af017c\",\n                \"title\": \"Take Tea\",\n                \"user_id\": \"62a90e8c5308c9f988af016c\",\n                \"createdAt\": \"2022-06-14T22:45:27.505Z\",\n                \"updatedAt\": \"2022-06-14T22:45:27.505Z\"\n            },\n            {\n                \"_id\": \"62a90f825308c9f988af017a\",\n                \"title\": \"Make Tea\",\n                \"user_id\": \"62a90e8c5308c9f988af016c\",\n                \"createdAt\": \"2022-06-14T22:45:22.313Z\",\n                \"updatedAt\": \"2022-06-14T22:45:22.313Z\"\n            },\n            {\n                \"_id\": \"62a90f125308c9f988af0172\",\n                \"title\": \"Morning Walk\",\n                \"user_id\": \"62a90e8c5308c9f988af016c\",\n                \"createdAt\": \"2022-06-14T22:43:30.185Z\",\n                \"updatedAt\": \"2022-06-14T22:43:30.185Z\"\n            },\n            {\n                \"_id\": \"62a90ea35308c9f988af016e\",\n                \"title\": \"Read News Paper\",\n                \"user_id\": \"62a90e8c5308c9f988af016c\",\n                \"createdAt\": \"2022-06-14T22:41:39.021Z\",\n                \"updatedAt\": \"2022-06-14T22:41:39.021Z\"\n            }\n        ],\n        \"meta\": {\n            \"total_record\": 4,\n            \"page\": 1,\n            \"pages\": 1\n        }\n    },\n    \"message\": \"Todo fetched successfully.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get single todo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-access-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base_url}}/api/todo/62a90f875308c9f988af017c",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"todo",
+						"62a90f875308c9f988af017c"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get single todo",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTkwZThjNTMwOGM5Zjk4OGFmMDE2YyIsImlhdCI6MTY1NTI0NzMwMywiZXhwIjoxNjU1MjQ3OTAzfQ.FzWyAKKpd...",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:9004/api/todo/62a90f875308c9f988af017c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"api",
+								"todo",
+								"62a90f875308c9f988af017c"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "235"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"eb-SOZRBifpnb94Wsdeqh6RRN1pgjE\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 22:58:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"_id\": \"62a90f875308c9f988af017c\",\n        \"title\": \"Take Tea\",\n        \"user_id\": \"62a90e8c5308c9f988af016c\",\n        \"createdAt\": \"2022-06-14T22:45:27.505Z\",\n        \"updatedAt\": \"2022-06-14T22:45:27.505Z\"\n    },\n    \"message\": \"Todo fetched successfully.\"\n}"
+				},
+				{
+					"name": "Validation",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/todo/62a90f875308c9f988af017c1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"todo",
+								"62a90f875308c9f988af017c1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "175"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"af-IfJ6N4iuHo/5tzycAsuvwh7O7Nk\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jun 2022 22:59:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"failure\",\n    \"errors\": {\n        \"todoId\": {\n            \"value\": \"62a90f875308c9f988af017c1\",\n            \"msg\": \"Invalid todo Id.\",\n            \"param\": \"todoId\",\n            \"location\": \"params\"\n        }\n    },\n    \"message\": \"Todo validation failed\"\n}"
+				}
+			]
+		}
+	]
+}
