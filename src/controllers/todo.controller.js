@@ -97,7 +97,12 @@ exports.updateTodo = (req, res) => {
             responseData['data'] = task;
             responseData['message'] = 'Todo updated successfully.';
             res.json(responseData);
-        })
+        }).catch(err => {
+        responseData['status'] = 'failure';
+        responseData['data'] = {};
+        responseData['message'] = 'Todo not found';
+        return res.status(500).json(responseData);
+    });
 };
 
 exports.deleteTodo = (req, res) => {
@@ -122,14 +127,10 @@ exports.deleteTodo = (req, res) => {
             responseData['message'] = 'Todo deleted successfully.';
             res.json(responseData);
         }).catch(err => {
-        if (err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).send({
-                message: "Note not found with id " + req.params.noteId
-            });
-        }
-        return res.status(500).send({
-            message: "Could not delete note with id " + req.params.noteId
-        });
+        responseData['status'] = 'failure';
+        responseData['data'] = {};
+        responseData['message'] = 'Todo not found';
+        return res.status(500).json(responseData);
     });
 };
 
